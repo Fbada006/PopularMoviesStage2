@@ -26,7 +26,7 @@ public class MovieRepository {
 
             final LiveData<MovieResource<MovieResponse>> source =
                     LiveDataReactiveStreams.fromPublisher(
-                            MovieApiService.getMovieApiService().getMovies(API_KEY)
+                            MovieApiService.getMovieApiService().getMovies("popular", API_KEY)
                                     .onErrorReturn(throwable -> {
                                         Movie movie = new Movie();
                                         movie.setMovieId(-1000000);

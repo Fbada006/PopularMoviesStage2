@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ListPreference
+        app:defaultValue="@string/pref_sort_by_pop_value"
+        app:entries="@array/sort_by_labels"
+        app:entryValues="@array/sort_by_values"
+        app:key="@string/pref_sort_by_key"
+        app:title="@string/pref_sort_by_title" />
+
+</PreferenceScreen>

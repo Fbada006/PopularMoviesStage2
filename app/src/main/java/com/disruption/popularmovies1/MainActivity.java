@@ -2,16 +2,20 @@ package com.disruption.popularmovies1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.disruption.popularmovies1.adapter.MoviesAdapter;
 import com.disruption.popularmovies1.model.Movie;
+import com.disruption.popularmovies1.settings.SettingsActivity;
 import com.disruption.popularmovies1.utils.Constants;
 import com.disruption.popularmovies1.viewModel.MovieViewModel;
 
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     mProgressBar.setVisibility(View.GONE);
                     mErrorTextView.setVisibility(View.VISIBLE);
                     if (movieResource.data != null) {
-                        mErrorTextView.setText(getString(R.string.error_has_occurred, movieResource.data.getErrorMessage()));
+                        mErrorTextView.setText(getString(R.string.error_has_occurred, movieResource.message));
                     }
                     break;
                 case LOADING:
@@ -72,5 +76,20 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra(Constants.MOVIE_EXTRA, movie);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_sort) {
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
