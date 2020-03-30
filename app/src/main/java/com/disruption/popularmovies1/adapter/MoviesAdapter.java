@@ -16,13 +16,16 @@ import com.bumptech.glide.Glide;
 import com.disruption.popularmovies1.R;
 import com.disruption.popularmovies1.model.Movie;
 
+import java.util.Objects;
+
 import static com.disruption.popularmovies1.utils.Constants.IMAGE_URL_BASE_PATH;
 
 public class MoviesAdapter extends ListAdapter<Movie, MoviesAdapter.MovieViewHolder> {
-    private static final String TAG = "MoviesAdapter";
+    private final MovieClickListener mMovieClickListener;
 
-    public MoviesAdapter() {
+    public MoviesAdapter(MovieClickListener movieClickListener) {
         super(DIFF_CALLBACK);
+        mMovieClickListener = movieClickListener;
     }
 
     @NonNull
@@ -55,6 +58,11 @@ public class MoviesAdapter extends ListAdapter<Movie, MoviesAdapter.MovieViewHol
             super(v);
             movieImage = v.findViewById(R.id.movie_image);
             movieTitle = v.findViewById(R.id.movie_title);
+            v.setOnClickListener(view -> {
+                final int adapterPosition = getAdapterPosition();
+                Movie movie = Objects.requireNonNull(getItem(adapterPosition));
+                mMovieClickListener.onMovieClickListener(movie);
+            });
         }
     }
 
@@ -71,4 +79,8 @@ public class MoviesAdapter extends ListAdapter<Movie, MoviesAdapter.MovieViewHol
                     return oldItem == newItem;
                 }
             };
+
+    public interface MovieClickListener {
+        void onMovieClickListener(Movie movie);
+    }
 }
