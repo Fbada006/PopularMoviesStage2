@@ -10,8 +10,8 @@ import com.disruption.popularmovies1.utils.MovieResource;
 public class MovieViewModel extends ViewModel {
     public LiveData<MovieResource<MovieResponse>> mMovieResource;
 
-    public MovieViewModel() {
+    public MovieViewModel(String sortBy) {
         MovieRepository movieRepository = new MovieRepository();
-        mMovieResource = movieRepository.getMovies();
+        mMovieResource = movieRepository.getMovies(sortBy);
     }
 }

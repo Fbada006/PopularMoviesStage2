@@ -1,6 +1,7 @@
 package com.disruption.popularmovies1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.disruption.popularmovies1.adapter.MoviesAdapter;
@@ -18,6 +20,7 @@ import com.disruption.popularmovies1.model.Movie;
 import com.disruption.popularmovies1.settings.SettingsActivity;
 import com.disruption.popularmovies1.utils.Constants;
 import com.disruption.popularmovies1.viewModel.MovieViewModel;
+import com.disruption.popularmovies1.viewModel.MovieViewModelFactory;
 
 public class MainActivity extends AppCompatActivity {
     private MoviesAdapter mMoviesAdapter;
@@ -40,8 +43,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void observeViewModelForMovies() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String sortBy = preferences.getString(
+                getString(R.string.pref_sort_by_key),
+                getString(R.string.pref_sort_by_pop_value)
+        );
+
+        MovieViewModelFactory factory = new MovieViewModelFactory(sortBy);
+
         MovieViewModel movieViewModel =
-                new ViewModelProvider(this).get(MovieViewModel.class);
+                new ViewModelProvider(this, factory).get(MovieViewModel.class);
 
         movieViewModel.mMovieResource.observe(this, movieResource -> {
             switch (movieResource.status) {

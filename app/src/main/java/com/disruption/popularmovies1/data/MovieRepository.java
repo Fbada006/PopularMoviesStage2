@@ -19,14 +19,14 @@ public class MovieRepository {
     private MediatorLiveData<MovieResource<MovieResponse>> mMovieResource;
     private final String API_KEY = BuildConfig.BingerSecretKey;
 
-    public LiveData<MovieResource<MovieResponse>> getMovies() {
+    public LiveData<MovieResource<MovieResponse>> getMovies(String sortBy) {
         if (mMovieResource == null) {
             mMovieResource = new MediatorLiveData<>();
             mMovieResource.setValue(MovieResource.loading());
 
             final LiveData<MovieResource<MovieResponse>> source =
                     LiveDataReactiveStreams.fromPublisher(
-                            MovieApiService.getMovieApiService().getMovies("popular", API_KEY)
+                            MovieApiService.getMovieApiService().getMovies(sortBy, API_KEY)
                                     .onErrorReturn(throwable -> {
                                         Movie movie = new Movie();
                                         movie.setMovieId(-1000000);

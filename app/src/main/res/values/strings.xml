@@ -7,7 +7,7 @@
     <string name="error_has_occurred">Something has gone wrong with the following error message: %s</string>
     <string name="empty_result">Sorry, that did not yield any result. Try something else</string>
 
-    <string name="pref_sort_by_title">Sort BY</string>
+    <string name="pref_sort_by_title">Sort By</string>
     <string name="pref_sort_by_key">pref_sort_by_key</string>
 
     <string name="pref_sort_by_pop_label">Popularity</string>
