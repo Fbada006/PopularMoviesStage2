@@ -2,6 +2,7 @@ package com.disruption.popularmovies1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,6 +14,7 @@ import com.disruption.popularmovies1.utils.Constants;
 import com.disruption.popularmovies1.viewModel.MovieViewModel;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private MoviesAdapter mMoviesAdapter;
 
     @Override
@@ -32,9 +34,19 @@ public class MainActivity extends AppCompatActivity {
         MovieViewModel movieViewModel =
                 new ViewModelProvider(this).get(MovieViewModel.class);
 
-        movieViewModel.getMovieListObservable().observe(this, movies -> {
-            if ((movies != null) && (!movies.isEmpty())) {
-                mMoviesAdapter.submitList(movies);
+        movieViewModel.mMovieResource.observe(this, movieResponseMovieResource -> {
+            switch (movieResponseMovieResource.status) {
+                case SUCCESS:
+                    if (movieResponseMovieResource.data != null) {
+                        mMoviesAdapter.submitList(movieResponseMovieResource.data.getResults());
+                    }
+                    break;
+                case ERROR:
+                    Log.e(TAG, "observeViewModelForMovies:---------------- ERROR");
+                    break;
+                case LOADING:
+                    Log.e(TAG, "observeViewModelForMovies:---------------- LOADING");
+                    break;
             }
         });
     }

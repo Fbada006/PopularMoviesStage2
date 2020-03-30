@@ -28,6 +28,9 @@ public class Movie implements Parcelable {
         this.vote = vote;
     }
 
+    public Movie() {
+    }
+
     protected Movie(Parcel in) {
         movieId = in.readInt();
         posterPath = in.readString();
@@ -35,21 +38,6 @@ public class Movie implements Parcelable {
         releaseDate = in.readString();
         title = in.readString();
         vote = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(movieId);
-        dest.writeString(posterPath);
-        dest.writeString(overview);
-        dest.writeString(releaseDate);
-        dest.writeString(title);
-        dest.writeString(vote);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -86,5 +74,24 @@ public class Movie implements Parcelable {
 
     public String getVote() {
         return vote;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(movieId);
+        parcel.writeString(posterPath);
+        parcel.writeString(overview);
+        parcel.writeString(releaseDate);
+        parcel.writeString(title);
+        parcel.writeString(vote);
     }
 }

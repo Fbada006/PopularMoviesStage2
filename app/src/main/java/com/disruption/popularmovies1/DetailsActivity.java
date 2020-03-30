@@ -37,6 +37,9 @@ public class DetailsActivity extends AppCompatActivity {
             Movie movie = intent.getParcelableExtra(Constants.MOVIE_EXTRA);
             assert movie != null;
             showMovieDetails(movie);
+            setTitle(movie.getTitle());
+        } else {
+            setTitle(getString(R.string.movie_details_label));
         }
     }
 

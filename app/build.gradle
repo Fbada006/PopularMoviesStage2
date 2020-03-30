@@ -49,4 +49,13 @@ dependencies {
     //Lifecycle
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:2.2.14"
+
+    // Rx-Retrofit Call Adapter
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+
+    // Reactive Streams (convert Observable to LiveData)
+    implementation "android.arch.lifecycle:reactivestreams:1.1.1"
+
 }
