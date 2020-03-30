@@ -2,7 +2,9 @@ package com.disruption.popularmovies1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,16 +16,19 @@ import com.disruption.popularmovies1.utils.Constants;
 import com.disruption.popularmovies1.viewModel.MovieViewModel;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
     private MoviesAdapter mMoviesAdapter;
+    private TextView mErrorTextView;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        mErrorTextView = findViewById(R.id.error_text);
+        mProgressBar = findViewById(R.id.progressBar);
 
         mMoviesAdapter = new MoviesAdapter(this::onMovieClick);
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
         recyclerView.setAdapter(mMoviesAdapter);
 
@@ -34,18 +39,30 @@ public class MainActivity extends AppCompatActivity {
         MovieViewModel movieViewModel =
                 new ViewModelProvider(this).get(MovieViewModel.class);
 
-        movieViewModel.mMovieResource.observe(this, movieResponseMovieResource -> {
-            switch (movieResponseMovieResource.status) {
+        movieViewModel.mMovieResource.observe(this, movieResource -> {
+            switch (movieResource.status) {
                 case SUCCESS:
-                    if (movieResponseMovieResource.data != null) {
-                        mMoviesAdapter.submitList(movieResponseMovieResource.data.getResults());
+                    assert movieResource.data != null;
+                    if (!movieResource.data.getResults().isEmpty()) {
+                        mMoviesAdapter.submitList(movieResource.data.getResults());
+                        mProgressBar.setVisibility(View.GONE);
+                        mErrorTextView.setVisibility(View.GONE);
+                    } else {
+                        mProgressBar.setVisibility(View.GONE);
+                        mErrorTextView.setVisibility(View.VISIBLE);
+                        mErrorTextView.setText(getString(R.string.empty_result));
                     }
                     break;
                 case ERROR:
-                    Log.e(TAG, "observeViewModelForMovies:---------------- ERROR");
+                    mProgressBar.setVisibility(View.GONE);
+                    mErrorTextView.setVisibility(View.VISIBLE);
+                    if (movieResource.data != null) {
+                        mErrorTextView.setText(getString(R.string.error_has_occurred, movieResource.data.getErrorMessage()));
+                    }
                     break;
                 case LOADING:
-                    Log.e(TAG, "observeViewModelForMovies:---------------- LOADING");
+                    mProgressBar.setVisibility(View.VISIBLE);
+                    mErrorTextView.setVisibility(View.GONE);
                     break;
             }
         });

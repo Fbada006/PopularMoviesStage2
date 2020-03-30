@@ -2,4 +2,6 @@
     <string name="app_name">Popular Movies: Stage 1</string>
     <string name="image_of_movie">Image of movie</string>
     <string name="movie_details_label">Movie Details</string>
+    <string name="error_has_occurred">Something has gone wrong with the following error message: %s</string>
+    <string name="empty_result">Sorry, that did not yield any result. Try something els</string>
 </resources>
