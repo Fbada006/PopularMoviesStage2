@@ -1,11 +1,11 @@
-package com.disruption.popularmovies1.viewModel;
+package com.disruption.popularmovies.viewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.disruption.popularmovies1.data.MovieRepository;
-import com.disruption.popularmovies1.model.MovieResponse;
-import com.disruption.popularmovies1.utils.MovieResource;
+import com.disruption.popularmovies.data.MovieRepository;
+import com.disruption.popularmovies.model.MovieResponse;
+import com.disruption.popularmovies.utils.MovieResource;
 
 public class MovieViewModel extends ViewModel {
     public LiveData<MovieResource<MovieResponse>> mMovieResource;

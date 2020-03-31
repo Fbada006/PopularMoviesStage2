@@ -1,12 +1,10 @@
-package com.disruption.popularmovies1.settings;
+package com.disruption.popularmovies.settings;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.disruption.popularmovies1.R;
-
-import java.util.Objects;
+import com.disruption.popularmovies.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

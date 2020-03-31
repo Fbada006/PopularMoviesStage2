@@ -1,4 +1,4 @@
-package com.disruption.popularmovies1.utils;
+package com.disruption.popularmovies.utils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

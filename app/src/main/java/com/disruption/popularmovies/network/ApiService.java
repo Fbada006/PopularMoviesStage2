@@ -1,6 +1,6 @@
-package com.disruption.popularmovies1.network;
+package com.disruption.popularmovies.network;
 
-import com.disruption.popularmovies1.model.MovieResponse;
+import com.disruption.popularmovies.model.MovieResponse;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;

@@ -1,4 +1,4 @@
-package com.disruption.popularmovies1.adapter;
+package com.disruption.popularmovies.adapter;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.disruption.popularmovies1.R;
-import com.disruption.popularmovies1.model.Movie;
+import com.disruption.popularmovies.R;
+import com.disruption.popularmovies.model.Movie;
 
 import java.util.Objects;
 
-import static com.disruption.popularmovies1.utils.Constants.IMAGE_URL_BASE_PATH;
+import static com.disruption.popularmovies.utils.Constants.IMAGE_URL_BASE_PATH;
 
 public class MoviesAdapter extends ListAdapter<Movie, MoviesAdapter.MovieViewHolder> {
     private final MovieClickListener mMovieClickListener;

@@ -1,4 +1,4 @@
-package com.disruption.popularmovies1;
+package com.disruption.popularmovies;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,12 +15,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.disruption.popularmovies1.adapter.MoviesAdapter;
-import com.disruption.popularmovies1.model.Movie;
-import com.disruption.popularmovies1.settings.SettingsActivity;
-import com.disruption.popularmovies1.utils.Constants;
-import com.disruption.popularmovies1.viewModel.MovieViewModel;
-import com.disruption.popularmovies1.viewModel.MovieViewModelFactory;
+import com.disruption.popularmovies.adapter.MoviesAdapter;
+import com.disruption.popularmovies.model.Movie;
+import com.disruption.popularmovies.settings.SettingsActivity;
+import com.disruption.popularmovies.utils.Constants;
+import com.disruption.popularmovies.viewModel.MovieViewModel;
+import com.disruption.popularmovies.viewModel.MovieViewModelFactory;
 
 public class MainActivity extends AppCompatActivity {
     private MoviesAdapter mMoviesAdapter;

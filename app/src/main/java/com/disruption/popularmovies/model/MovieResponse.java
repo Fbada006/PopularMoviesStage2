@@ -1,4 +1,4 @@
-package com.disruption.popularmovies1.model;
+package com.disruption.popularmovies.model;
 
 import com.google.gson.annotations.SerializedName;
 

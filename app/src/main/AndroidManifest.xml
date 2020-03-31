@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.disruption.popularmovies1">
+    package="com.disruption.popularmovies">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,12 +14,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".settings.SettingsActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name="com.disruption.popularmovies.settings.SettingsActivity"
+            android:parentActivityName="com.disruption.popularmovies.MainActivity" />
         <activity
-            android:name=".DetailsActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+            android:name="com.disruption.popularmovies.DetailsActivity"
+            android:parentActivityName="com.disruption.popularmovies.MainActivity" />
+        <activity android:name="com.disruption.popularmovies.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

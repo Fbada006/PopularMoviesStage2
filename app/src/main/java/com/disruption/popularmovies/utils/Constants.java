@@ -1,4 +1,4 @@
-package com.disruption.popularmovies1.utils;
+package com.disruption.popularmovies.utils;
 
 public class Constants {
     public static final String IMAGE_URL_BASE_PATH = "https://image.tmdb.org/t/p/w342";

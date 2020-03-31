@@ -1,4 +1,4 @@
-package com.disruption.popularmovies1.viewModel;
+package com.disruption.popularmovies.viewModel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;

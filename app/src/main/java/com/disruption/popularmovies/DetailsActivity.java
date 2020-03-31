@@ -1,4 +1,4 @@
-package com.disruption.popularmovies1;
+package com.disruption.popularmovies;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.disruption.popularmovies1.model.Movie;
-import com.disruption.popularmovies1.utils.Constants;
+import com.disruption.popularmovies.model.Movie;
+import com.disruption.popularmovies.utils.Constants;
 
-import static com.disruption.popularmovies1.utils.Constants.IMAGE_URL_BASE_PATH;
+import static com.disruption.popularmovies.utils.Constants.IMAGE_URL_BASE_PATH;
 
 public class DetailsActivity extends AppCompatActivity {
 

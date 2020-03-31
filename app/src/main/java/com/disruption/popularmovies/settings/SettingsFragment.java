@@ -1,4 +1,4 @@
-package com.disruption.popularmovies1.settings;
+package com.disruption.popularmovies.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 
-import com.disruption.popularmovies1.R;
+import com.disruption.popularmovies.R;
 
 import java.util.Objects;
 

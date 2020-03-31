@@ -1,14 +1,14 @@
-package com.disruption.popularmovies1.data;
+package com.disruption.popularmovies.data;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MediatorLiveData;
 
-import com.disruption.popularmovies1.BuildConfig;
-import com.disruption.popularmovies1.model.Movie;
-import com.disruption.popularmovies1.model.MovieResponse;
-import com.disruption.popularmovies1.network.MovieApiService;
-import com.disruption.popularmovies1.utils.MovieResource;
+import com.disruption.popularmovies.BuildConfig;
+import com.disruption.popularmovies.model.Movie;
+import com.disruption.popularmovies.model.MovieResponse;
+import com.disruption.popularmovies.network.MovieApiService;
+import com.disruption.popularmovies.utils.MovieResource;
 
 import java.util.ArrayList;
 import java.util.List;
