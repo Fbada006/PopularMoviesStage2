@@ -3,8 +3,12 @@ package com.disruption.popularmovies.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = MovieConstants.TABLE_NAME)
 public class Movie implements Parcelable {
     @SerializedName("id")
     private int movieId;
@@ -15,8 +19,10 @@ public class Movie implements Parcelable {
     @SerializedName("release_date")
     private String releaseDate;
     @SerializedName("title")
+    @ColumnInfo(name = MovieConstants.COLUMN_TITLE)
     private String title;
     @SerializedName("vote_average")
+    @ColumnInfo(name = MovieConstants.COLUMN_VOTE)
     private String vote;
 
     public Movie(int movieId, String posterPath, String overview, String releaseDate, String title, String vote) {
