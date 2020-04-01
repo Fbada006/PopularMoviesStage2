@@ -19,10 +19,11 @@ import com.disruption.popularmovies.adapter.MoviesAdapter;
 import com.disruption.popularmovies.model.Movie;
 import com.disruption.popularmovies.settings.SettingsActivity;
 import com.disruption.popularmovies.utils.Constants;
-import com.disruption.popularmovies.viewModel.MovieViewModel;
-import com.disruption.popularmovies.viewModel.MovieViewModelFactory;
+import com.disruption.popularmovies.viewModel.main.MovieViewModel;
+import com.disruption.popularmovies.viewModel.main.MovieViewModelFactory;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private MoviesAdapter mMoviesAdapter;
     private TextView mErrorTextView;
     private ProgressBar mProgressBar;
@@ -49,12 +50,11 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.pref_sort_by_pop_value)
         );
 
-        MovieViewModelFactory factory = new MovieViewModelFactory(sortBy);
+        MovieViewModelFactory factory = new MovieViewModelFactory(getApplication(), sortBy);
 
-        MovieViewModel movieViewModel =
-                new ViewModelProvider(this, factory).get(MovieViewModel.class);
+        MovieViewModel movieViewModel = new ViewModelProvider(this, factory).get(MovieViewModel.class);
 
-        movieViewModel.mMovieResource.observe(this, movieResource -> {
+        movieViewModel.getMovieResource().observe(this, movieResource -> {
             switch (movieResource.status) {
                 case SUCCESS:
                     assert movieResource.data != null;

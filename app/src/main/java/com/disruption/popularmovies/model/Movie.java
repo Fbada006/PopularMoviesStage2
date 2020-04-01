@@ -5,12 +5,15 @@ import android.os.Parcelable;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = MovieConstants.TABLE_NAME)
 public class Movie implements Parcelable {
     @SerializedName("id")
+    @PrimaryKey
     private int movieId;
     @SerializedName("poster_path")
     private String posterPath;
@@ -34,6 +37,7 @@ public class Movie implements Parcelable {
         this.vote = vote;
     }
 
+    @Ignore
     public Movie() {
     }
 

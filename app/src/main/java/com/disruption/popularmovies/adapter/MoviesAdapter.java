@@ -39,6 +39,7 @@ public class MoviesAdapter extends ListAdapter<Movie, MoviesAdapter.MovieViewHol
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, final int position) {
         Movie movie = getItem(position);
+        assert movie != null;
         String imageUrl = IMAGE_URL_BASE_PATH + movie.getPosterPath();
 
         Glide.with(holder.itemView.getContext())

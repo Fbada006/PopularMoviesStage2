@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MovieResponse {
 
-    @SerializedName("results")
+    @SerializedName("trailers")
     private List<Movie> results;
 
     private String errorMessage;

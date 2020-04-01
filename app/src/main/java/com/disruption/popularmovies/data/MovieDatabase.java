@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.disruption.popularmovies.model.Movie;
 
 @Database(entities = {Movie.class}, version = 1, exportSchema = false)
-abstract class MovieDatabase extends RoomDatabase {
+public abstract class MovieDatabase extends RoomDatabase {
     private static final Object LOCK = new Object();
     private static final String DATABASE_NAME = "movielist";
     private static MovieDatabase sInstance;
