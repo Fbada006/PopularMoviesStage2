@@ -2,11 +2,15 @@ package com.disruption.popularmovies;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +21,7 @@ import com.disruption.popularmovies.adapter.ReviewsAdapter;
 import com.disruption.popularmovies.adapter.TrailersAdapter;
 import com.disruption.popularmovies.model.Movie;
 import com.disruption.popularmovies.utils.Constants;
+import com.disruption.popularmovies.viewModel.FavouritesActivity;
 import com.disruption.popularmovies.viewModel.details.DetailsViewModel;
 import com.disruption.popularmovies.viewModel.details.DetailsViewModelFactory;
 import com.like.LikeButton;
@@ -67,6 +72,21 @@ public class DetailsActivity extends AppCompatActivity {
         setUpReviewsRv();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_favs, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_favs) {
+            startActivity(new Intent(this, FavouritesActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void observeLikedState() {
         mDetailsViewModel.isMovieInFavs(mMovie.getMovieId()).observe(this, movie -> {
             if (movie != null) {
@@ -83,11 +103,14 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void liked(LikeButton likeButton) {
                 mDetailsViewModel.insertMovieToFavourites(mMovie);
+                Toast.makeText(DetailsActivity.this, getString(R.string.add_to_favs), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
                 mDetailsViewModel.deleteMovieFromFavourites(mMovie);
+                Toast.makeText(DetailsActivity.this, getString(R.string.remove_from_favs), Toast.LENGTH_SHORT).show();
+
             }
         });
     }
