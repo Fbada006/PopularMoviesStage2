@@ -2,7 +2,9 @@ package com.disruption.popularmovies;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -116,6 +118,8 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void setUpTrailersRv() {
+        ProgressBar progressBar = findViewById(R.id.trailer_progress_bar);
+        ImageView errorImage = findViewById(R.id.trailer_error_image);
         RecyclerView recyclerView = findViewById(R.id.trailers_list);
         TrailersAdapter adapter = new TrailersAdapter();
         recyclerView.setAdapter(adapter);
@@ -127,19 +131,24 @@ public class DetailsActivity extends AppCompatActivity {
                     assert trailerResponseResource.data != null;
                     if (!trailerResponseResource.data.getTrailers().isEmpty()) {
                         adapter.submitList(trailerResponseResource.data.getTrailers());
+                        showData(progressBar, errorImage);
+                    } else {
+                        showError(progressBar, errorImage);
                     }
                     break;
                 case ERROR:
-
+                    showError(progressBar, errorImage);
                     break;
                 case LOADING:
-
+                    showProgressBar(progressBar, errorImage);
                     break;
             }
         });
     }
 
     private void setUpReviewsRv() {
+        ProgressBar progressBar = findViewById(R.id.review_progress_bar);
+        ImageView errorImage = findViewById(R.id.review_error_image);
         RecyclerView recyclerView = findViewById(R.id.reviews_list);
         ReviewsAdapter adapter = new ReviewsAdapter();
         recyclerView.setAdapter(adapter);
@@ -151,15 +160,33 @@ public class DetailsActivity extends AppCompatActivity {
                     assert reviewResponseResource.data != null;
                     if (!reviewResponseResource.data.getReviews().isEmpty()) {
                         adapter.submitList(reviewResponseResource.data.getReviews());
+                        showData(progressBar, errorImage);
+                    } else {
+                        showError(progressBar, errorImage);
                     }
                     break;
                 case ERROR:
-
+                    showError(progressBar, errorImage);
                     break;
                 case LOADING:
-
+                    showProgressBar(progressBar, errorImage);
                     break;
             }
         });
+    }
+
+    private void showProgressBar(ProgressBar progressBar, ImageView errorImage) {
+        progressBar.setVisibility(View.VISIBLE);
+        errorImage.setVisibility(View.GONE);
+    }
+
+    private void showError(ProgressBar progressBar, ImageView errorImage) {
+        progressBar.setVisibility(View.GONE);
+        errorImage.setVisibility(View.VISIBLE);
+    }
+
+    private void showData(ProgressBar progressBar, ImageView errorImage) {
+        progressBar.setVisibility(View.GONE);
+        errorImage.setVisibility(View.GONE);
     }
 }
