@@ -24,7 +24,6 @@ import com.disruption.popularmovies.viewModel.main.MovieViewModel;
 import com.disruption.popularmovies.viewModel.main.MovieViewModelFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
     private MoviesAdapter mMoviesAdapter;
     private TextView mErrorTextView;
     private ProgressBar mProgressBar;
