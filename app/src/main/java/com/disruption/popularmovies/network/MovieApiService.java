@@ -23,4 +23,20 @@ public class MovieApiService {
     public static ApiService getMovieApiService() {
         return retrofitInstance().create(ApiService.class);
     }
+
+    public enum MovieFilter {
+        FAVOURITES(null),
+        TOP_RATED("top_rated"),
+        POPULAR("popular");
+
+        private String value;
+
+        MovieFilter(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
 }

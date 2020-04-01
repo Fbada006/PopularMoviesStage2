@@ -19,6 +19,7 @@ import com.disruption.popularmovies.adapter.MoviesAdapter;
 import com.disruption.popularmovies.model.Movie;
 import com.disruption.popularmovies.settings.SettingsActivity;
 import com.disruption.popularmovies.utils.Constants;
+import com.disruption.popularmovies.viewModel.FavouritesActivity;
 import com.disruption.popularmovies.viewModel.main.MovieViewModel;
 import com.disruption.popularmovies.viewModel.main.MovieViewModelFactory;
 
@@ -99,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_sort) {
             startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        } else if (item.getItemId() == R.id.action_favs) {
+            startActivity(new Intent(this, FavouritesActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

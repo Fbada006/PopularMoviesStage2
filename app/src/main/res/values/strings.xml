@@ -24,4 +24,6 @@
     <string name="trailers">Trailers</string>
     <string name="reviews">Reviews</string>
     <string name="poster_of_the_movie">Poster of the movie</string>
+    <string name="favourites">Favourites</string>
+    <string name="no_favourites_to_show">No favourites to show</string>
 </resources>

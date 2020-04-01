@@ -13,11 +13,12 @@ import com.disruption.popularmovies.utils.Resource;
 
 public class MovieViewModel extends AndroidViewModel {
     private LiveData<Resource<MovieResponse>> mMovieResource;
+    private final MovieRepository mMovieRepository;
 
-    public MovieViewModel(@NonNull Application application, String sortBy) {
+    MovieViewModel(@NonNull Application application, String sortBy) {
         super(application);
-        MovieRepository movieRepository = new MovieRepository(MovieDatabase.getInstance(application).movieDao());
-        mMovieResource = movieRepository.getMovies(sortBy);
+        mMovieRepository = new MovieRepository(MovieDatabase.getInstance(application).movieDao());
+        mMovieResource = mMovieRepository.getMovies(sortBy);
     }
 
     public LiveData<Resource<MovieResponse>> getMovieResource() {
