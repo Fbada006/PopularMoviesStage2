@@ -8,8 +8,13 @@ import androidx.room.Query;
 
 import com.disruption.popularmovies.model.Movie;
 
+import java.util.List;
+
 @Dao
 public interface MovieDao {
+
+    @Query("SELECT * FROM fav_movies")
+    LiveData<List<Movie>> loadAllFavs();
 
     @Query("SELECT * FROM fav_movies WHERE movieId = :id")
     LiveData<Movie> loadMovieById(int id);

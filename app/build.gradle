@@ -83,4 +83,7 @@ dependencies {
 
     //CardView
     implementation "androidx.cardview:cardview:$cardview_version"
+
+    //Like button for favourites
+    implementation "com.github.jd-alexander:LikeButton:$like_button_version"
 }

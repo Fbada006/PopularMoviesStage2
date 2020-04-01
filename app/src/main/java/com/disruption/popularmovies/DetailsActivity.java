@@ -17,6 +17,8 @@ import com.disruption.popularmovies.model.Movie;
 import com.disruption.popularmovies.utils.Constants;
 import com.disruption.popularmovies.viewModel.details.DetailsViewModel;
 import com.disruption.popularmovies.viewModel.details.DetailsViewModelFactory;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 
 import static com.disruption.popularmovies.utils.Constants.IMAGE_URL_BASE_PATH;
 
@@ -29,6 +31,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tvRating;
     private Movie mMovie;
     private DetailsViewModel mDetailsViewModel;
+    private LikeButton mLikeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +50,44 @@ public class DetailsActivity extends AppCompatActivity {
             assert mMovie != null;
             showMovieDetails(mMovie);
             setTitle(mMovie.getTitle());
+            setUpFavsListener();
+
+            DetailsViewModelFactory factory = new DetailsViewModelFactory(mMovie.getMovieId(), getApplication());
+            mDetailsViewModel = new ViewModelProvider(this, factory).get(DetailsViewModel.class);
+
+            observeLikedState();
         } else {
             setTitle(getString(R.string.movie_details_label));
         }
 
-        DetailsViewModelFactory factory = new DetailsViewModelFactory(mMovie.getMovieId(), getApplication());
-        mDetailsViewModel = new ViewModelProvider(this, factory).get(DetailsViewModel.class);
-
         setUpTrailersRv();
 
         setUpReviewsRv();
+    }
+
+    private void observeLikedState() {
+        mDetailsViewModel.isMovieInFavs(mMovie.getMovieId()).observe(this, movie -> {
+            if (movie != null) {
+                mLikeButton.setLiked(true);
+            } else {
+                mLikeButton.setLiked(false);
+            }
+        });
+    }
+
+    private void setUpFavsListener() {
+        mLikeButton = findViewById(R.id.star_button);
+        mLikeButton.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+                mDetailsViewModel.insertMovieToFavourites(mMovie);
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+                mDetailsViewModel.deleteMovieFromFavourites(mMovie);
+            }
+        });
     }
 
     private void showMovieDetails(Movie movie) {

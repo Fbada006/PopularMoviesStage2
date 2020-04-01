@@ -55,6 +55,7 @@ public class MoviesAdapter extends ListAdapter<Movie, MoviesAdapter.MovieViewHol
         final ImageView movieImage;
         final TextView movieTitle;
 
+
         MovieViewHolder(View v) {
             super(v);
             movieImage = v.findViewById(R.id.movie_image);

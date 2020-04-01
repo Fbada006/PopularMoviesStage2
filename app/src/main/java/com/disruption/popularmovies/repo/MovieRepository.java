@@ -17,6 +17,7 @@ import com.disruption.popularmovies.utils.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import io.reactivex.schedulers.Schedulers;
 
@@ -138,5 +139,17 @@ public class MovieRepository {
 
     public LiveData<Movie> loadMovieById(int movieId) {
         return mMovieDao.loadMovieById(movieId);
+    }
+
+    public LiveData<List<Movie>> getAllFavs() {
+        return mMovieDao.loadAllFavs();
+    }
+
+    public void deleteMovieFromFavs(Movie movie) {
+        Executors.newSingleThreadExecutor().execute(() -> mMovieDao.removeMovieFromFavourites(movie));
+    }
+
+    public void addMovieToFavs(Movie movie) {
+        Executors.newSingleThreadExecutor().execute(() -> mMovieDao.addMovieToFavourites(movie));
     }
 }
