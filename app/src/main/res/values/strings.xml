@@ -17,4 +17,8 @@
     <string name="pref_sort_by_top_value">top_rated</string>
 
     <string name="action_sort">Sort</string>
+    <string name="trailer">Trailer</string>
+    <string name="play_trailer">Play trailer</string>
+    <string name="trailers">Trailers</string>
+    <string name="reviews">Reviews</string>
 </resources>

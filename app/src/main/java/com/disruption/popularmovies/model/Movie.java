@@ -8,6 +8,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.disruption.popularmovies.utils.MovieConstants;
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = MovieConstants.TABLE_NAME)

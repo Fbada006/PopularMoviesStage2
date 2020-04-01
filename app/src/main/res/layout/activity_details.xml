@@ -1,82 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".DetailsActivity">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/movie_poster"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/details_image_height"
-            android:layout_marginTop="@dimen/app_universal_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/movie_title"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/app_universal_margin"
-            android:layout_marginTop="@dimen/app_universal_margin"
-            android:layout_marginEnd="@dimen/app_universal_margin"
-            android:gravity="center"
-            android:textAppearance="@android:style/TextAppearance.Material.Headline"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/universal_app_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_poster"
-            tools:text="Awesome movie" />
+            tools:context=".DetailsActivity">
 
-        <TextView
-            android:id="@+id/movie_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/app_universal_margin"
-            android:layout_marginTop="@dimen/app_universal_margin"
-            android:layout_marginEnd="@dimen/app_universal_margin"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="@dimen/universal_app_text_size"
-            app:layout_constraintEnd_toStartOf="@+id/movie_vote"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_title"
-            tools:text="2020" />
+            <ImageView
+                android:id="@+id/movie_poster"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/details_image_height"
+                android:layout_marginTop="@dimen/app_universal_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/movie_vote"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/app_universal_margin"
-            android:layout_marginTop="@dimen/app_universal_margin"
-            android:layout_marginEnd="@dimen/app_universal_margin"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="@dimen/universal_app_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/movie_date"
-            app:layout_constraintTop_toBottomOf="@+id/movie_title"
-            tools:text="4.5" />
+            <TextView
+                android:id="@+id/movie_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_universal_margin"
+                android:layout_marginTop="@dimen/app_universal_margin"
+                android:layout_marginEnd="@dimen/app_universal_margin"
+                android:gravity="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/universal_app_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_poster"
+                tools:text="Awesome movie" />
 
-        <TextView
-            android:id="@+id/movie_synopsis"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/app_universal_margin"
-            android:layout_marginTop="@dimen/app_universal_margin"
-            android:layout_marginEnd="@dimen/app_universal_margin"
-            android:textSize="@dimen/universal_app_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_vote"
-            tools:text="This is an awesome movie to watch guys" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/movie_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_universal_margin"
+                android:layout_marginTop="@dimen/app_universal_margin"
+                android:layout_marginEnd="@dimen/app_universal_margin"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="@dimen/universal_app_text_size"
+                app:layout_constraintEnd_toStartOf="@+id/movie_vote"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_title"
+                tools:text="2020" />
+
+            <TextView
+                android:id="@+id/movie_vote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_universal_margin"
+                android:layout_marginTop="@dimen/app_universal_margin"
+                android:layout_marginEnd="@dimen/app_universal_margin"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="@dimen/universal_app_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/movie_date"
+                app:layout_constraintTop_toBottomOf="@+id/movie_title"
+                tools:text="4.5" />
+
+            <TextView
+                android:id="@+id/movie_synopsis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_universal_margin"
+                android:layout_marginTop="@dimen/app_universal_margin"
+                android:layout_marginEnd="@dimen/app_universal_margin"
+                android:textSize="@dimen/universal_app_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_vote"
+                tools:text="This is an awesome movie to watch guys" />
+
+            <TextView
+                android:id="@+id/trailer_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_universal_margin"
+                android:layout_marginTop="@dimen/app_universal_margin"
+                android:layout_marginEnd="@dimen/app_universal_margin"
+                android:gravity="center_horizontal"
+                android:text="@string/trailers"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/universal_app_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_synopsis" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trailers_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:padding="6dp"
+                android:scrollbars="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/reviews_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/trailer_label"
+                tools:itemCount="16"
+                tools:listitem="@layout/trailer_item" />
+
+            <TextView
+                android:id="@+id/reviews_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_universal_margin"
+                android:layout_marginTop="@dimen/app_universal_margin"
+                android:layout_marginEnd="@dimen/app_universal_margin"
+                android:gravity="center_horizontal"
+                android:text="@string/reviews"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/universal_app_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/trailers_list" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reviews_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:padding="6dp"
+                android:scrollbars="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reviews_label"
+                tools:itemCount="16"
+                tools:listitem="@layout/review_item" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

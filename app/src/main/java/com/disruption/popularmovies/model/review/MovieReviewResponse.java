@@ -1,9 +1,12 @@
 package com.disruption.popularmovies.model.review;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class MovieReviewResponse {
 
+    @SerializedName("results")
     private List<Review> reviews;
 
     private String errorMessage;

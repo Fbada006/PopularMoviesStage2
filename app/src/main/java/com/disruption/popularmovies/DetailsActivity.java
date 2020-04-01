@@ -6,10 +6,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.disruption.popularmovies.adapter.ReviewsAdapter;
+import com.disruption.popularmovies.adapter.TrailersAdapter;
 import com.disruption.popularmovies.model.Movie;
 import com.disruption.popularmovies.utils.Constants;
+import com.disruption.popularmovies.viewModel.details.DetailsViewModel;
+import com.disruption.popularmovies.viewModel.details.DetailsViewModelFactory;
 
 import static com.disruption.popularmovies.utils.Constants.IMAGE_URL_BASE_PATH;
 
@@ -20,6 +27,8 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tvDescription;
     private TextView tvDate;
     private TextView tvRating;
+    private Movie mMovie;
+    private DetailsViewModel mDetailsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +43,20 @@ public class DetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if ((intent != null) && (intent.hasExtra(Constants.MOVIE_EXTRA))) {
-            Movie movie = intent.getParcelableExtra(Constants.MOVIE_EXTRA);
-            assert movie != null;
-            showMovieDetails(movie);
-            setTitle(movie.getTitle());
+            mMovie = intent.getParcelableExtra(Constants.MOVIE_EXTRA);
+            assert mMovie != null;
+            showMovieDetails(mMovie);
+            setTitle(mMovie.getTitle());
         } else {
             setTitle(getString(R.string.movie_details_label));
         }
+
+        DetailsViewModelFactory factory = new DetailsViewModelFactory(mMovie.getMovieId(), getApplication());
+        mDetailsViewModel = new ViewModelProvider(this, factory).get(DetailsViewModel.class);
+
+        setUpTrailersRv();
+
+        setUpReviewsRv();
     }
 
     private void showMovieDetails(Movie movie) {
@@ -66,5 +82,53 @@ public class DetailsActivity extends AppCompatActivity {
             ex.printStackTrace();
             return "N/A";
         }
+    }
+
+    private void setUpTrailersRv() {
+        RecyclerView recyclerView = findViewById(R.id.trailers_list);
+        TrailersAdapter adapter = new TrailersAdapter();
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+
+        mDetailsViewModel.getTrailerResourceLiveData().observe(this, trailerResponseResource -> {
+            switch (trailerResponseResource.status) {
+                case SUCCESS:
+                    assert trailerResponseResource.data != null;
+                    if (!trailerResponseResource.data.getTrailers().isEmpty()) {
+                        adapter.submitList(trailerResponseResource.data.getTrailers());
+                    }
+                    break;
+                case ERROR:
+
+                    break;
+                case LOADING:
+
+                    break;
+            }
+        });
+    }
+
+    private void setUpReviewsRv() {
+        RecyclerView recyclerView = findViewById(R.id.reviews_list);
+        ReviewsAdapter adapter = new ReviewsAdapter();
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mDetailsViewModel.getReviewResourceLiveData().observe(this, reviewResponseResource -> {
+            switch (reviewResponseResource.status) {
+                case SUCCESS:
+                    assert reviewResponseResource.data != null;
+                    if (!reviewResponseResource.data.getReviews().isEmpty()) {
+                        adapter.submitList(reviewResponseResource.data.getReviews());
+                    }
+                    break;
+                case ERROR:
+
+                    break;
+                case LOADING:
+
+                    break;
+            }
+        });
     }
 }

@@ -61,7 +61,7 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rxretrofit_version"
 
     // Reactive Streams (convert Observable to LiveData)
-    implementation "android.arch.lifecycle:reactivestreams:$reactive_streams_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$reactive_streams_version"
 
     //Preference
     implementation "androidx.preference:preference:$preference_version"
@@ -77,4 +77,10 @@ dependencies {
     //Paging library
     implementation "androidx.paging:paging-runtime:$paging_version"
     implementation "androidx.paging:paging-rxjava2:$paging_version"
+
+    //Coordinator layout
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$coordinator_layout_version"
+
+    //CardView
+    implementation "androidx.cardview:cardview:$cardview_version"
 }

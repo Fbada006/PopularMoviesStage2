@@ -1,12 +1,9 @@
 package com.disruption.popularmovies.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class MovieResponse {
 
-    @SerializedName("trailers")
     private List<Movie> results;
 
     private String errorMessage;
