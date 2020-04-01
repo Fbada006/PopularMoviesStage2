@@ -64,7 +64,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         Glide.with(this)
                 .load(imageUrl)
-                .fitCenter()
+                .centerCrop()
                 .placeholder(R.drawable.movie_loading_animation)
                 .error(R.drawable.ic_error_black_24dp)
                 .into(ivPoster);
@@ -72,7 +72,7 @@ public class DetailsActivity extends AppCompatActivity {
         tvTitle.setText(movie.getTitle());
         tvDescription.setText(movie.getOverview());
         tvDate.setText(setMovieYear(movie.getReleaseDate()));
-        tvRating.setText(movie.getVote());
+        tvRating.setText(getString(R.string.rating_text, movie.getVote()));
     }
 
     private String setMovieYear(String year) {
