@@ -30,7 +30,6 @@ import com.like.OnLikeListener;
 import static com.disruption.popularmovies.utils.Constants.IMAGE_URL_BASE_PATH;
 
 public class DetailsActivity extends AppCompatActivity {
-
     private ImageView ivPoster;
     private TextView tvTitle;
     private TextView tvDescription;

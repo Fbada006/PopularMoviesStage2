@@ -4,6 +4,8 @@ public class Trailer {
 
     private String id;
 
+    private String key;
+
     private String name;
 
     private String site;
@@ -12,8 +14,9 @@ public class Trailer {
 
     private String type;
 
-    public Trailer(String id, String name, String site, String size, String type) {
+    public Trailer(String id, String key, String name, String site, String size, String type) {
         this.id = id;
+        this.key = key;
         this.name = name;
         this.site = site;
         this.size = size;
@@ -45,5 +48,20 @@ public class Trailer {
 
     public String getSite() {
         return site;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    @Override
+    public String toString() {
+        return "Trailer{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", site='" + site + '\'' +
+                ", size='" + size + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

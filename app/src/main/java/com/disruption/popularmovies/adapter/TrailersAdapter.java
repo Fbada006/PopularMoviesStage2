@@ -19,7 +19,6 @@ import com.disruption.popularmovies.R;
 import com.disruption.popularmovies.model.trailer.Trailer;
 
 public class TrailersAdapter extends ListAdapter<Trailer, TrailersAdapter.TrailerViewHolder> {
-
     private static final DiffUtil.ItemCallback<Trailer> DIFF_CALLBACK =
             new DiffUtil.ItemCallback<Trailer>() {
                 @Override
@@ -39,13 +38,11 @@ public class TrailersAdapter extends ListAdapter<Trailer, TrailersAdapter.Traile
     }
 
     private static void watchYoutubeVideo(Context context, String id) {
-        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
-        Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("http://www.youtube.com/watch?v=" + id));
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
         try {
             context.startActivity(appIntent);
         } catch (ActivityNotFoundException ex) {
-            context.startActivity(webIntent);
+            ex.printStackTrace();
         }
     }
 
@@ -72,7 +69,7 @@ public class TrailersAdapter extends ListAdapter<Trailer, TrailersAdapter.Traile
         }
 
         private void bind(Trailer trailer) {
-            playImage.setOnClickListener(view -> watchYoutubeVideo(itemView.getContext(), trailer.getId()));
+            playImage.setOnClickListener(view -> watchYoutubeVideo(itemView.getContext(), trailer.getKey()));
         }
     }
 }
